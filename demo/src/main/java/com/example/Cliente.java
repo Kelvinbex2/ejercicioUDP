@@ -1,41 +1,27 @@
 package com.example;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.util.Scanner;
 
-public class Cliente {
-    private static final String LOCALHOST = "localhost";
-    private static final int PUERTO = 8888;
-
-
-
-    public static void enviar(String ms) throws IOException{
-       
-        DatagramSocket sSocket = new DatagramSocket();
-
-        
-        InetAddress equipo = InetAddress.getByName(LOCALHOST);
-        
-        byte[] mensaje = ms.getBytes();
-        DatagramPacket msg = new DatagramPacket(mensaje,mensaje.length, equipo, PUERTO);
-        
-        sSocket.send(msg);
-        sSocket.close();
-    }
+public class Cliente extends Entrada {
 
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        String msg = "";
-        do {
-            System.out.print(">");
-             msg = sc.nextLine();
-             
-            enviar(msg);
-            
-        } while (!msg.equalsIgnoreCase("Salir"));
+        try (DatagramSocket clientSocket = new DatagramSocket()) {
+            System.out.println("💻 Cliente UDP conectado.");
+
+            Scanner sc = new Scanner(System.in);
+            while (true) {
+                System.out.print("Cliente > ");
+                int msg = sc.nextInt();
+                enviar(String.valueOf(msg), clientSocket);
+
+                // Si el cliente quiere terminar, puede hacerlo.
+                if (msg == 0) {  // Ejemplo de condición para terminar
+                    System.out.println(" Cerrando cliente...");
+                    break;
+                }
+            }
+        }
     }
-    
 }
