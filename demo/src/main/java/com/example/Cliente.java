@@ -16,8 +16,8 @@ public class Cliente extends Entrada {
                 int msg = sc.nextInt();
                 enviar(String.valueOf(msg), clientSocket);
 
-                // Si el cliente quiere terminar, puede hacerlo.
-                if (msg == 0) {  // Ejemplo de condición para terminar
+               
+                if (msg == 0) {  
                     System.out.println(" Cerrando cliente...");
                     break;
                 }

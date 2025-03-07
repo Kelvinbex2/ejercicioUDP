@@ -10,7 +10,7 @@ public class Entrada {
     public static final int PUERTO = 1111;
     public static final String MSG_FORMAT = "[%s:%s]: %s";
 
-    // Método para enviar mensajes
+ 
     public static void enviar(String ms, DatagramSocket socket) throws IOException {
         InetAddress equipo = InetAddress.getByName(LOCALHOST);
         byte[] mensaje = ms.getBytes();
@@ -18,7 +18,7 @@ public class Entrada {
         socket.send(msg);
     }
 
-    // Método para recibir mensajes sin bloquear el puerto
+
     public static String recibir(DatagramSocket socket) throws IOException {
         byte[] buffer = new byte[1024]; 
         DatagramPacket msg = new DatagramPacket(buffer, buffer.length);

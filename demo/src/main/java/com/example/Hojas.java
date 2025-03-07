@@ -10,9 +10,9 @@ public class Hojas {
     public synchronized boolean imprimir(int cantidad) {
         if (hojasDisponibles >= cantidad) {
             hojasDisponibles -= cantidad;
-            return true; // Se pueden imprimir las hojas
+            return true; 
         }
-        return false; // No hay suficientes hojas
+        return false; 
     }
 
     public int getHojasDisponibles() {

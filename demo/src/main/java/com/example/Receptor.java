@@ -16,25 +16,25 @@ public class Receptor extends Entrada implements Runnable {
     public void run() {
         try {
             while (true) {
-                String mensaje = recibir(socket); // Recibir número del cliente
+                String mensaje = recibir(socket); 
 
                 // Validar que el mensaje es un número
                 if (!mensaje.matches("\\d+")) {
-                    System.out.println("❌ Mensaje inválido recibido: " + mensaje);
+                    System.out.println(" Mensaje inválido recibido: " + mensaje);
                     continue;
                 }
 
                 int cantidadSolicitada = Integer.parseInt(mensaje);
                 
-                // Procesar impresión y validación, pero no enviar respuesta
+                
                 if (hojas.imprimir(cantidadSolicitada)) {
-                    System.out.println("✅ Se imprimieron " + cantidadSolicitada + " hojas. Hojas restantes: " + hojas.getHojasDisponibles());
+                    System.out.println("Se imprimieron " + cantidadSolicitada + " hojas. Hojas restantes: " + hojas.getHojasDisponibles());
                 } else {
-                    System.out.println("❌ No hay suficientes hojas para imprimir " + cantidadSolicitada);
+                    System.out.println(" No hay suficientes hojas para imprimir " + cantidadSolicitada);
                 }
             }
         } catch (IOException e) {
-            System.err.println("❌ Error en la recepción: " + e.getMessage());
+            System.err.println(" Error en la recepción: " + e.getMessage());
         }
     }
 }
